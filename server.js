@@ -20,7 +20,7 @@ const upload = multer({ storage: storage });
 let shapes = [
     {
         "_id": 1,
-        "name": "Crimped Tetrahedon",
+        "name": "Crimped Tetrahedron",
         "angle": 122.601252,
         "symmetry": "Tetrahedral",
         "discovery": "me",
