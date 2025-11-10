@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Jellylamps/server-monodihedrals#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "deploy": "^1.0.3",
     "express": "^5.1.0",
     "multer": "^2.0.2"
   }

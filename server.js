@@ -27,7 +27,8 @@ let shapes = [
         "faces": 16,
         "vertices": 22,
         "edges": 36,
-        "families": ["tetrahedral", "crimped"],
+        "families": ["Tetrahedral", "Crimped"],
+        "trivia": "This is the first monodihedral polyhedron I discovered with sole intent of finding one, but the second I discovered overall. I found this one in hopes to assist the development of the program Michael Montgomery created (mentioned in the credits page). I had the idea to start from the geometry of a truncated triakis tetrahedron and managed to discover the geometry just before the program did.",
         "img": "CTetra.jpg"
     },
     {
@@ -39,7 +40,8 @@ let shapes = [
         "faces": 30,
         "vertices": 44,
         "edges": 72,
-        "families": ["cubic", "crimped"],
+        "families": ["Cubic", "Crimped"],
+        "trivia": "",
         "img": "CCube.jpg"
     },
     {
@@ -51,7 +53,8 @@ let shapes = [
         "faces": 18,
         "vertices": 20,
         "edges": 36,
-        "families": ["cubic", "crimped"],
+        "families": ["Cubic", "Crimped"],
+        "trivia": "",
         "img": "ACCube.jpg"
     },
     {
@@ -63,7 +66,8 @@ let shapes = [
         "faces": 32,
         "vertices": 42,
         "edges": 72,
-        "families": ["octahedral", "crimped"],
+        "families": ["Octahedral", "Crimped"],
+        "trivia": "",
         "img": "COcta.jpg"
     },
     {
@@ -75,7 +79,8 @@ let shapes = [
         "faces": 72,
         "vertices": 110,
         "edges": 180,
-        "families": ["dodecahedral", "crimped"],
+        "families": ["Dodecahedral", "Crimped"],
+        "trivia": "",
         "img": "CDodec.jpg"
     },
     {
@@ -87,7 +92,8 @@ let shapes = [
         "faces": 80,
         "vertices": 102,
         "edges": 180,
-        "families": ["icosahedral", "crimped"],
+        "families": ["Icosahedral", "Crimped"],
+        "trivia": "",
         "img": "CIcosa.jpg"
     },
     {
@@ -99,7 +105,8 @@ let shapes = [
         "faces": 36,
         "vertices": 38,
         "edges": 72,
-        "families": ["rhombic dodecahedral", "crimped"],
+        "families": ["Rhombic dodecahedral", "Crimped"],
+        "trivia": "",
         "img": "3CRDodec.jpg"
     },
     {
@@ -111,7 +118,8 @@ let shapes = [
         "faces": 36,
         "vertices": 38,
         "edges": 72,
-        "families": ["rhombic dodecahedral", "crimped"],
+        "families": ["Rhombic dodecahedral", "Crimped"],
+        "trivia": "",
         "img": "4CRDodec.jpg"
     }
 ];
