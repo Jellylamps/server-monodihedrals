@@ -1,8 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
+const Joi = require("joi");
 const app = express();
 app.use(express.static("public"));
+app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors());
 
@@ -132,6 +134,54 @@ app.get("/api/shapes/", (req, res)=>{
 app.get("/api/shapes/:id", (req, res)=>{
     const shape = shapes.find((shape)=>shape._id === parseInt(req.params.id));
     res.send(shape);
+});
+
+const validateShape = (shape) => {
+    const schema = Joi.object({
+        _id: Joi.allow(""),
+        name: Joi.allow(""),
+        angle: Joi.number().required(),
+        symmetry: Joi.number().required(),
+        discovery: Joi.string().required(),
+        faces: Joi.number().required(),
+        vertices: Joi.number().required(),
+        edges: Joi.number().required(),
+        families: Joi.allow(""),
+        trivia: Joi.string().required()
+    });
+    console.log(schema.validate(shape));
+
+    return schema.validate(shape);
+};
+
+app.post("/api/shapes", upload.single("img"), (req, res)=>{
+    const result = validateShape(req.body);
+    console.log(result);
+
+    if (!result || result.error) {
+        res.status(400).send("bruh");
+        return;
+    }
+
+    const shape = {
+        _id: shapes.length+1,
+        name: req.body.name==="" ? "Unnamed" : req.body.name,
+        angle: req.body.angle,
+        symmetry: req.body.symmetry,
+        discovery: req.body.discovery,
+        faces: req.body.faces,
+        vertices: req.body.vertices,
+        edges: req.body.edges,
+        families: [],
+        trivia: req.body.trivia
+    };
+
+    if (req.file) {
+        shape.img = req.file.filename;
+    }
+
+    shapes.push(shape);
+    res.status(200).send(shape);
 });
 
 app.listen(3001, ()=>{
