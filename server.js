@@ -141,13 +141,13 @@ const validateShape = (shape) => {
         _id: Joi.allow(""),
         name: Joi.allow(""),
         angle: Joi.number().required(),
-        symmetry: Joi.number().required(),
+        symmetry: Joi.string().required(),
         discovery: Joi.string().required(),
         faces: Joi.number().required(),
         vertices: Joi.number().required(),
         edges: Joi.number().required(),
         families: Joi.allow(""),
-        trivia: Joi.string().required()
+        trivia: Joi.allow("")
     });
     console.log(schema.validate(shape));
 
@@ -159,7 +159,7 @@ app.post("/api/shapes", upload.single("img"), (req, res)=>{
     console.log(result);
 
     if (!result || result.error) {
-        res.status(400).send("bruh");
+        res.status(400).send(result.error.details[0].message);
         return;
     }
 
@@ -182,6 +182,47 @@ app.post("/api/shapes", upload.single("img"), (req, res)=>{
 
     shapes.push(shape);
     res.status(200).send(shape);
+});
+
+app.put("/api/shapes/:id", upload.single("img"), (req, res)=>{
+    let shape = shapes.find((s) => s._id === parseInt(req.params.id));
+    if (!shape) {
+        res.status(404).send("Couldn't find a shape with a matching id");
+        return;
+    }
+
+    const result = validateShape(req.body);
+    if (result.error) {
+        res.status(400).send(result.error.details[0].message);
+        return;
+    }
+
+    shape.name = req.body.name==="" ? "Unnamed" : req.body.name;
+    shape.angle = req.body.angle;
+    shape.symmetry = req.body.symmetry;
+    shape.discovery = req.body.discovery;
+    shape.faces = req.body.faces;
+    shape.vertices = req.body.vertices;
+    shape.edges = req.body.edges;
+    shape.families = [];
+    shape.trivia = req.body.trivia;
+
+    if (req.file) {
+        shape.img = req.file.filename;
+    }
+
+    res.status(200).send(shape);
+});
+
+app.delete("/api/shapes/:id", (req, res)=>{
+    let shape = shapes.find((s) => s._id === parseInt(req.params.id));
+    if (!shape) {
+        res.status(404).send("Couldn't find a shape with a matching id");
+        return;
+    }
+
+    shapes.splice(shapes.indexOf(shape), 1);
+    res.send(shape);
 });
 
 app.listen(3001, ()=>{
