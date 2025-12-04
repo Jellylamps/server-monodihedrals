@@ -34,7 +34,8 @@ const shapeSchema = new mongoose.Schema({
     vertices:Number,
     edges:Number,
     families:[String],
-    trivia:String
+    trivia:String,
+    img:String
 });
 
 const Shape = mongoose.model("Shape", shapeSchema);
@@ -194,8 +195,7 @@ app.post("/api/shapes", upload.single("img"), async(req, res)=>{
         edges: req.body.edges,
         families: [],
         //failies: req.body.families.split(","),
-        trivia: req.body.trivia,
-        img: req.file.filename
+        trivia: req.body.trivia
     });
 
     if (req.file) {
@@ -224,8 +224,7 @@ app.put("/api/shapes/:id", upload.single("img"), async(req, res)=>{
         edges: req.body.edges,
         families: [],
         //failies: req.body.families.split(","),
-        trivia: req.body.trivia,
-        img: req.file.filename
+        trivia: req.body.trivia
     }
 
     if (req.file) {
